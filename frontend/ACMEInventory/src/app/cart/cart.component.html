@@ -1,0 +1,35 @@
+<h1>ACME Shopping Cart</h1> 
+<button (click)="goShopping()" class="w3-bar-item w3-button"style="background-color:#C63D2D">Go Back Shopping</button>
+    <div class="container">
+            <table class="table">
+                
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                            <th>Title</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                    <tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let item of items">
+                            <td width=100 height=100><img src="/assets/img/{{item.id}}.jpg" height=100% width=100%></td>
+                            <td>{{item.title}}</td>
+                            <!-- <td><div><input type="text" placeholder="{{item.count}}"></div>  -->
+                            <td><div><input type="number" placeholder="{{item.count}}" ng-model="count" id="{{item.id}}"></div>
+                            <div>Quantity should less than {{item.quantity}}</div>
+                            <div><button (click)="changeQuantity(item)" class="btn btn-warning">Change Quantity</button></div>
+                            <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+                            </td>
+                            <td ng-change="changeQuantity()">{{item.price}}*{{item.count}}={{item.price*item.count}}</td>
+                    
+                        <tr>
+                        
+                </tbody>
+               
+            </table>
+            <h2 id="checkout"></h2>
+            <div>send receipt to : </div>
+            <div><input type="text" placeholder="job@example.com" [pattern]="emailRegex" required id="email">
+            <button (click)="sendEmail()" class="btn btn-success">Buy Now</button></div>
+    </div>  
